@@ -1,6 +1,8 @@
 package com.example.webservices.controller;
 
+import com.example.webservices.dto.TemperatureResponse;
 import com.example.webservices.client.WeatherClient;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,10 +19,12 @@ public class WeatherController {
     }
 
     @GetMapping("/celsius")
-    public String getCelsius(@RequestParam String fahrenheit) {
-        return weatherClient
-                .fahrenheitToCelsius(fahrenheit)
-                .getFahrenheitToCelsiusResult();
+    public TemperatureResponse toCelsius(@RequestParam String fahrenheit) {
+        return weatherClient.getCelsius(fahrenheit);
+    }
+
+    @GetMapping("/fahrenheit")
+    public TemperatureResponse toFahrenheit(@RequestParam String celsius) {
+        return weatherClient.getFahrenheit(celsius);
     }
 }
-
