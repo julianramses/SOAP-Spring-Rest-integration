@@ -3,8 +3,8 @@ package com.example.webservices.dto;
 
 
 public record TemperatureResponse(
-        String input,
+        String inputValue,
         String inputUnit,
-        String output,
+        String outputValue,
         String outputUnit
 ) {}
