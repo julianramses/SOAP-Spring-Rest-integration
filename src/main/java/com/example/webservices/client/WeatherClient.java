@@ -36,7 +36,6 @@ public class WeatherClient {
 
         return TemperatureMapper.fromFahrenheitToCelsius(fahrenheit, response);
     }
-
     public TemperatureResponse getFahrenheit(String celsius) {
 
         CelsiusToFahrenheit request = new CelsiusToFahrenheit();
@@ -53,4 +52,23 @@ public class WeatherClient {
 
         return TemperatureMapper.fromCelsiusToFahrenheit(celsius, response);
     }
+
+    public TemperatureResponse convert(
+            String value,
+            String from,
+            String to
+    ) {
+        if ("F".equals(from) && "C".equals(to)) {
+            return getCelsius(value);
+        }
+
+        if ("C".equals(from) && "F".equals(to)) {
+            return getFahrenheit(value);
+        }
+
+        throw new IllegalArgumentException(
+                "Unsupported conversion: " + from + " -> " + to
+        );
+    }
+
 }
